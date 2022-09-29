@@ -7,7 +7,7 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/tvPlaneMode"
+        android:id="@+id/tvAirplaneMode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
@@ -22,9 +22,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:text="TextView"
-        app:layout_constraintEnd_toEndOf="@+id/tvPlaneMode"
-        app:layout_constraintStart_toStartOf="@+id/tvPlaneMode"
-        app:layout_constraintTop_toBottomOf="@+id/tvPlaneMode" />
+        app:layout_constraintEnd_toEndOf="@+id/tvAirplaneMode"
+        app:layout_constraintStart_toStartOf="@+id/tvAirplaneMode"
+        app:layout_constraintTop_toBottomOf="@+id/tvAirplaneMode" />
 
     <TextView
         android:id="@+id/textView2"
