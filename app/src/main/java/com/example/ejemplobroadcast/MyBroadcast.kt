@@ -3,13 +3,34 @@ package com.example.ejemplobroadcast
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import android.os.BatteryManager
+import com.example.ejemplobroadcast.databinding.ActivityBatteryBinding
 
 //Para que esta clase se comporte como un
 //BroadcastReceiver debes extender o heredar
-//una clase abstracta qwue ustedes ya han utilizado
+//una clase abstracta que ustedes ya han utilizado
 //3 veces en el ejercicio anterior
-class MyBroadcast: BroadcastReceiver() {
+class MyBroadcast(
+    private val bindingObject: ActivityBatteryBinding
+): BroadcastReceiver() {
     override fun onReceive(context: Context?, intent: Intent?) {
-        TODO("Not yet implemented")
+        when(intent?.action) {
+            Intent.ACTION_BATTERY_CHANGED -> showBatteryLevel(intent)
+        }
+    }
+
+    private fun showBatteryLevel(intent: Intent?) {
+        //Cuando se trat del nivel de la batería, el servicio del sistema
+        //les envia a traves de un intent un valor entero que representa
+        //el porcentaje de bateria restante
+        //El tema de la bateria generalmente es gestionado y configurado
+        //en una clase que controla todos estos aspectos y se llama BatteryManager
+
+        val batteryLevel = intent?.getIntExtra(BatteryManager.EXTRA_LEVEL, 0)
+        batteryLevel?.let {
+            val percentage = "$it% bateria"
+            bindingObject.tvBatteryMessage.text = percentage
+            bindingObject.pbBatteryLevel.progress = it
+        }
     }
 }

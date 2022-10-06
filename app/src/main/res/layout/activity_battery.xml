@@ -6,4 +6,35 @@
     android:layout_height="match_parent"
     tools:context=".BatteryActivity">
 
+    <TextView
+        android:id="@+id/tvBatteryMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="75dp"
+        tools:text="TextView"
+        app:layout_constraintEnd_toEndOf="@+id/tvBatteryPercentage"
+        app:layout_constraintStart_toStartOf="@+id/tvBatteryPercentage"
+        app:layout_constraintTop_toBottomOf="@+id/tvBatteryPercentage" />
+
+    <TextView
+        android:id="@+id/tvBatteryPercentage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        tools:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ProgressBar
+        android:id="@+id/pbBatteryLevel"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="50dp"
+        app:layout_constraintEnd_toEndOf="@+id/tvBatteryMessage"
+        app:layout_constraintStart_toStartOf="@+id/tvBatteryMessage"
+        app:layout_constraintTop_toBottomOf="@+id/tvBatteryMessage" />
 </androidx.constraintlayout.widget.ConstraintLayout>
