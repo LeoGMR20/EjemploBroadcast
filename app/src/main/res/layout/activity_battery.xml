@@ -11,10 +11,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="75dp"
-        tools:text="TextView"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="@+id/tvBatteryPercentage"
         app:layout_constraintStart_toStartOf="@+id/tvBatteryPercentage"
-        app:layout_constraintTop_toBottomOf="@+id/tvBatteryPercentage" />
+        app:layout_constraintTop_toBottomOf="@+id/tvBatteryPercentage"
+        tools:text="TextView" />
 
     <TextView
         android:id="@+id/tvBatteryPercentage"

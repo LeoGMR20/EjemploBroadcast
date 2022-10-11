@@ -27,6 +27,7 @@ class BatteryActivity : AppCompatActivity() {
         super.onStart()
         //Registrar su broadcast receiver
         registerReceiver(myBroadcast, IntentFilter(Intent.ACTION_BATTERY_CHANGED))
+        registerReceiver(myBroadcast, IntentFilter(Intent.ACTION_BATTERY_LOW))
         //Crear un intent, configurarlo, e intentar resolverlo
         val intent = Intent(this,MyBroadcast::class.java)
         sendBroadcast(intent)

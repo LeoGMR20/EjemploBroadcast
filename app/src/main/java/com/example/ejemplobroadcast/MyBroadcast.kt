@@ -16,11 +16,22 @@ class MyBroadcast(
     override fun onReceive(context: Context?, intent: Intent?) {
         when(intent?.action) {
             Intent.ACTION_BATTERY_CHANGED -> showBatteryLevel(intent)
+            Intent.ACTION_BATTERY_LOW -> evaluateLowBattery(intent)
+        }
+    }
+
+    private fun evaluateLowBattery(intent: Intent?) {
+        //El intent que resuelve el tema de la batería baja
+        //maneja un dato en su registro temporal de tipo booleano
+
+        val lowBattery = intent?.getBooleanExtra(BatteryManager.EXTRA_BATTERY_LOW, false)
+        lowBattery?.let {
+            bindingObject.tvBatteryMessage.text = "Alerta Batería Baja"
         }
     }
 
     private fun showBatteryLevel(intent: Intent?) {
-        //Cuando se trat del nivel de la batería, el servicio del sistema
+        //Cuando se trata del nivel de la batería, el servicio del sistema
         //les envia a traves de un intent un valor entero que representa
         //el porcentaje de bateria restante
         //El tema de la bateria generalmente es gestionado y configurado
@@ -29,7 +40,7 @@ class MyBroadcast(
         val batteryLevel = intent?.getIntExtra(BatteryManager.EXTRA_LEVEL, 0)
         batteryLevel?.let {
             val percentage = "$it% bateria"
-            bindingObject.tvBatteryMessage.text = percentage
+            bindingObject.tvBatteryPercentage.text = percentage
             bindingObject.pbBatteryLevel.progress = it
         }
     }
