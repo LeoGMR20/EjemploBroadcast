@@ -15,7 +15,10 @@ class MyBroadcast(
 ): BroadcastReceiver() {
     override fun onReceive(context: Context?, intent: Intent?) {
         when(intent?.action) {
-            Intent.ACTION_BATTERY_CHANGED -> showBatteryLevel(intent)
+            Intent.ACTION_BATTERY_CHANGED -> {
+                showBatteryLevel(intent)
+                batteryState(intent)
+            }
             Intent.ACTION_BATTERY_LOW -> evaluateLowBattery(intent)
         }
     }
@@ -42,6 +45,23 @@ class MyBroadcast(
             val percentage = "$it% bateria"
             bindingObject.tvBatteryPercentage.text = percentage
             bindingObject.pbBatteryLevel.progress = it
+        }
+    }
+
+    private fun batteryState(intent: Intent?){
+        val batteryState = intent?.getIntExtra(BatteryManager.EXTRA_HEALTH, 0)
+        batteryState?.let {
+            var health = ""
+            when(it){
+                BatteryManager.BATTERY_HEALTH_DEAD -> health = "Salud de Batería: muerta"
+                BatteryManager.BATTERY_HEALTH_COLD -> health = "Salud de la batería: fría"
+                BatteryManager.BATTERY_HEALTH_GOOD -> health = "Salud de la batería: en buen estado"
+                BatteryManager.BATTERY_HEALTH_OVERHEAT -> health = "Batería: sobrecalentada"
+                BatteryManager.BATTERY_HEALTH_UNKNOWN -> health = "Salud de la batería: desconocida"
+                BatteryManager.BATTERY_HEALTH_OVER_VOLTAGE -> health = "Salud de la batería: con sobrevoltaje"
+                BatteryManager.BATTERY_HEALTH_UNSPECIFIED_FAILURE -> health = "Algo falló en la salud de la batería"
+            }
+            bindingObject.tvBatteryHealth.text = health
         }
     }
 }
