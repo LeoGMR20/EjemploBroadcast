@@ -4,6 +4,7 @@ import android.content.Intent
 import android.content.IntentFilter
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.Settings
 import com.example.ejemplobroadcast.databinding.ActivityBatteryBinding
 
 class BatteryActivity : AppCompatActivity() {
@@ -21,6 +22,17 @@ class BatteryActivity : AppCompatActivity() {
         //Inicializar una instancia de la clase broadcast receiver
 
         myBroadcast = MyBroadcast(binding)
+
+        binding.fabSettings.setOnClickListener {
+            enabledWriteSettings()
+        }
+    }
+
+    //Este método va a servir para ir a la pantalla de su celular
+    //donde se tiene el listados de apps y los permisos que tienen
+    private fun enabledWriteSettings() {
+        val intent = Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS)
+        startActivity(intent)
     }
 
     override fun onStart() {

@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">EjemploBroadcast</string>
+    <string name="btn_settings">Este boton habilitará los settings</string>
 </resources>

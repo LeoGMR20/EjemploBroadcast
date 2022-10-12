@@ -19,18 +19,23 @@ class MyBroadcast(
                 showBatteryLevel(intent)
                 batteryState(intent)
             }
-            Intent.ACTION_BATTERY_LOW -> evaluateLowBattery(intent)
+            Intent.ACTION_BATTERY_LOW -> evaluateLowBattery(intent, context)
         }
     }
 
-    private fun evaluateLowBattery(intent: Intent?) {
+    private fun evaluateLowBattery(intent: Intent?, context: Context?) {
         //El intent que resuelve el tema de la batería baja
         //maneja un dato en su registro temporal de tipo booleano
 
         val lowBattery = intent?.getBooleanExtra(BatteryManager.EXTRA_BATTERY_LOW, false)
         lowBattery?.let {
             bindingObject.tvBatteryMessage.text = "Alerta Batería Baja"
+            configureScreenBrightness(context)
         }
+    }
+
+    private fun configureScreenBrightness(context: Context?) {
+
     }
 
     private fun showBatteryLevel(intent: Intent?) {
